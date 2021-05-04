@@ -1,8 +1,9 @@
-<div class="columns is-vcentered mt-5">
+<div class="columns mt-5">
     <div class="column is-one-fifth is-offset-2">
         <div class="card">
             <div class="card-content">
                 <h3 class="title is-3">Friend Requests</h3>
+                <% @friend_requests.each do |friend_request| %>
                 <article class="media">
                     <figure class="media-left">
                         <p class="image is-64x64">
@@ -12,21 +13,22 @@
                     <div class="media-content">
                         <div class="content">
                             <p>
-                                <strong>John Smith</strong>
+                                <strong><%= friend_request.friend_2.name %></strong>
                             </p>
                         </div>
                         <nav class="level">
                             <div class="level-left">
                                 <div class="level-item">
-                                    <a class="button is-ghost">Confirm</a>
+                                    <%= link_to "Confirm", friend_path(:id => friend_request.id), method: :put, class: "button is-ghost" %>
                                 </div>
                                 <div class="level-item">
-                                    <a class="button is-ghost">Delete</a>
+                                    <%= link_to "Delete", friend_path(:id => friend_request.id, :friend_2_id => friend_request.friend_2.id), method: :delete, class: "button is-ghost" %>
                                 </div>
                             </div>
                         </nav>
                     </div>
                 </article>
+                <% end %>
             </div>
         </div>
     </div>
@@ -34,7 +36,8 @@
         <div class="card">
             <div class="card-content">
                 <h3 class="title is-3">Friends</h3>
-                <div class="columns">
+                <div class="columns is-multiline">
+                    <% @friends.each do |friend| %>
                     <div class="column is-half">
                         <article class="media">
                             <figure class="media-left">
@@ -45,30 +48,14 @@
                             <div class="media-content">
                                 <div class="content">
                                     <p>
-                                        <strong>John Smith 2</strong>
+                                        <strong><%= friend.friend_2.name %></strong>
                                     </p>
                                 </div>
                             </div>
                         </article>
                     </div>
-                    <div class="column is-half">
-                        <article class="media">
-                            <figure class="media-left">
-                                <p class="image is-64x64">
-                                    <img src="https://bulma.io/images/placeholders/128x128.png">
-                                </p>
-                            </figure>
-                            <div class="media-content">
-                                <div class="content">
-                                    <p>
-                                        <strong>John Smith 2</strong>
-                                    </p>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+                    <% end %>
                 </div>
-                
             </div>
         </div>
     </div>
