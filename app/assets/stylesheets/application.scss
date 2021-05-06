@@ -17,3 +17,11 @@
 
 @import "bulma";
 
+div.dropdown.is-right {
+    border: none;
+    outline: none;
+}
+
+.dropdown-menu {
+    width: 400px;
+}

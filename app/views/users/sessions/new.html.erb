@@ -7,21 +7,23 @@
           <div class="field">
             <%= f.label :email, class: "label" %>
             <div class="control">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
             </div>
           </div>
           
           <div class="field">
             <%= f.label :password %>
             <div class="control">
-              <%= f.password_field :password, autocomplete: "current-password" %>
+              <%= f.password_field :password, autocomplete: "current-password", class: "input" %>
             </div>
           </div>
 
           <% if devise_mapping.rememberable? %>
             <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me, class: "label" %>
+              <label class="checkbox">
+                <%= f.check_box :remember_me %>
+                Remember me
+              </label>
             </div>
           <% end %>
 

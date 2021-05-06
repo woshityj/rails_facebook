@@ -34,6 +34,79 @@
             <div class="buttons">
               <% if user_signed_in? %>
                 <%= current_user.username %>
+                <div class="dropdown is-right" style="margin-left:10px; margin-right:10px;">
+                  <div class="dropdown-trigger">
+                    <button class="button is-white" aria-haspopup="true" aria-control="dropdown-menu1">
+                      <span class="icon is-large">
+                        <i class="fas fa-bell"></i>
+                      </span>
+                    </button>
+                  </div>
+                  <div class="dropdown-menu" id="dropdown-menu1" role="menu" style="right: -90px;">
+                    <div class="dropdown-content">
+                      <div class="dropdown-item">
+                        <h4 class="title is-4">Notifications</h4>
+                        <article class="media">
+                          <figure class="media-left">
+                            <p class="image is-64x64">
+                              <img src="https://bulma.io/images/placeholders/128x128.png" style="max-height: none;">
+                            </p>
+                          </figure>
+                          <div class="media-content">
+                            <div class="content">
+                              <p>
+                                <strong>John Smith</strong>
+                                <br>
+                                Sent you a friend request
+                                <br>
+                                <small class="has-text-link">31m</small>
+                                <br>
+                              </p>
+                            </div>
+                          </div>
+                        </article>
+                        <article class="media">
+                          <figure class="media-left">
+                            <p class="image is-64x64">
+                              <img src="https://bulma.io/images/placeholders/128x128.png" style="max-height: none;">
+                            </p>
+                          </figure>
+                          <div class="media-content">
+                            <div class="content">
+                              <p>
+                                <strong>John Smith</strong>
+                                <br>
+                                Sent you a friend request
+                                <br>
+                                <small class="has-text-link">31m</small>
+                                <br>
+                              </p>
+                            </div>
+                          </div>
+                        </article>
+                        <article class="media">
+                          <figure class="media-left">
+                            <p class="image is-64x64">
+                              <img src="https://bulma.io/images/placeholders/128x128.png" style="max-height: none;">
+                            </p>
+                          </figure>
+                          <div class="media-content">
+                            <div class="content">
+                              <p>
+                                <strong>John Smith</strong>
+                                <br>
+                                Sent you a friend request
+                                <br>
+                                <small class="has-text-link">31m</small>
+                                <br>
+                              </p>
+                            </div>
+                          </div>
+                        </article>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "button is-light" %>
               <% else %>
                 <%= link_to "Sign up", new_user_registration_path, class: "button is-info" %>
@@ -49,3 +122,11 @@
     <%= yield %>
   </body>
 </html>
+
+<script>
+  var dropdown = document.querySelector('.dropdown');
+  dropdown.addEventListener('click', function(event){
+      event.stopPropagation();
+      dropdown.classList.toggle('is-active');
+  });
+</script>
