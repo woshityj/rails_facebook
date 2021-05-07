@@ -6,4 +6,6 @@ class User < ApplicationRecord
   
   has_many :friends_1, class_name: :Friend, foreign_key: :friend_1_id
   has_many :friends_2, class_name: :Friend, foreign_key: :friend_2_id
+
+  has_many :posts
 end
