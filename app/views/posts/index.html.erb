@@ -38,10 +38,10 @@
                                     <br>
                                     <br>
                                     <%= post.post %>
-                                    <% if !post.like.nil? %>
+                                    <% if post.likes.count != 0 %>
                                     <br>
                                     <br>
-                                    <small><i class="fas fa-thumbs-up"></i><%= post.like.like %> Likes</small>
+                                    <small><i class="fas fa-thumbs-up"></i><%= post.likes.count %> Likes</small>
                                     <% end %>
                                 </p>
                             </div>
@@ -49,7 +49,15 @@
                     </article>
                     </div>
                     <footer class="card-footer">
-                        <a href="#" class="card-footer-item"><i class="fas fa-thumbs-up"></i> Like</a>
+                        <% if @current_user_liked_posts.has_value?(post.id) %>
+                            <%= link_to like_path(:id => @current_user_liked_posts.key(post.id)), method: :delete, class:"card-footer-item" do %>
+                                <i class="fas fa-thumbs-down"></i> Dislike
+                            <% end %>
+                        <% else %>
+                            <%= link_to likes_path(:post_id => post.id), method: :post, class:"card-footer-item" do %>
+                                <i class="fas fa-thumbs-up"></i> Like
+                            <% end %>
+                        <% end %>
                         <a href="#" class="card-footer-item"><i class="fas fa-comment"></i>Comment</a>
                         <a href="#" class="card-footer-item"><i class="fas fa-share"></i>Share</a>
                     </footer>

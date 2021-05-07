@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
   def index
+    @current_user_liked_posts = {}
     @posts = Post.all.order("created_at DESC")
+    current_user.likes.each do |liked_post|
+      @current_user_liked_posts[liked_post.id] = liked_post.post_id
+    end
   end
 
   def create

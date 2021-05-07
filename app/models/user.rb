@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :friends_2, class_name: :Friend, foreign_key: :friend_2_id
 
   has_many :posts
+  has_many :likes
 end
