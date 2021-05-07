@@ -8,8 +8,12 @@
                             <img src="https://bulma.io/images/placeholders/128x128.png">
                         </p>
                     </figure>
-                    <div class="media-content">
-                        <input class="input is-rounded" type="text" placeholder="What's on your mind?">
+                    <div class="media-content mt-1">
+                    <%= form_with url: posts_path, method: :post do |form| %>
+                        <%= form.text_field :post, placeholder: "What's on your mind?", class: "input is-rounded" %>
+                        <%= form.text_field :user_id, value: current_user.id, class: "is-hidden" %>
+                        <%= form.submit class: "is-hidden" %>
+                    <% end %>
                     </div>
                 </article>
             </div>
