@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_07_121113) do
+ActiveRecord::Schema.define(version: 2021_05_07_141719) do
 
   create_table "friends", force: :cascade do |t|
     t.integer "friend_1_id"
@@ -23,21 +23,19 @@ ActiveRecord::Schema.define(version: 2021_05_07_121113) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "likes"
-    t.integer "post_id"
+    t.integer "like", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "post_id"
     t.index ["post_id"], name: "index_likes_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
     t.string "post"
-    t.integer "user_id_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
-    t.index ["user_id_id"], name: "index_posts_on_user_id_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,5 +57,4 @@ ActiveRecord::Schema.define(version: 2021_05_07_121113) do
   add_foreign_key "friends", "users", column: "friend_2_id"
   add_foreign_key "likes", "posts"
   add_foreign_key "posts", "users"
-  add_foreign_key "posts", "users", column: "user_id_id"
 end
