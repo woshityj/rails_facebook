@@ -1,5 +1,124 @@
 <div class="container">
-    <figure class="image is-128x128">
-        
-    </figure>
+    <div class="columns is-mobile is-centered">
+        <div class="column is-two-fifths mt-5">
+            <div class="content has-text-centered">
+                <figure class="image is-128x128 is-inline-block">
+                    <% if @user.avatar.attached? %>
+                        <%= image_tag @user.avatar.variant(resize_to_limit: [128, 128]), class: "is-rounded" %>
+                    <% else %>
+                        <img src="https://bulma.io/images/placeholders/256x256.png" class="is-rounded">
+                    <% end %>
+                </figure>
+                <h3 class="title is-3 mt-1"><%= @user.name %></h3>
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            Posts
+                        </p>
+                    </header>
+                </div>
+            </div>
+            <div class="columns is-mobile">
+                <div class="column">
+                <% @user.posts.each do |post| %>
+                    <div class="card mt-5">
+                        <div class="card-content">
+                        <article class="media">
+                            <figure class="media-left">
+                                <p class="image is-48x48">
+                                    <img src="https://bulma.io/images/placeholders/128x128.png">
+                                </p>
+                            </figure>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong><%= post.user.name %></strong>
+                                        <br>
+                                        <small class="is-size-7"><%= time_ago_in_words(post.created_at) %> ago</small>
+                                        <br>
+                                        <br>
+                                        <%= post.post %>
+                                        <% if post.likes.count != 0 %>
+                                        <br>
+                                        <br>
+                                        <small><i class="fas fa-thumbs-up"></i><%= post.likes.count %> Likes</small>
+                                        <% end %>
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                        </div>
+                        <footer class="card-footer">
+                            <% if @current_user_liked_posts.has_value?(post.id) %>
+                                <%= link_to like_path(:id => @current_user_liked_posts.key(post.id)), method: :delete, class:"card-footer-item" do %>
+                                    <i class="fas fa-thumbs-down"></i> Dislike
+                                <% end %>
+                            <% else %>
+                                <%= link_to likes_path(:post_id => post.id), method: :post, class:"card-footer-item" do %>
+                                    <i class="fas fa-thumbs-up"></i> Like
+                                <% end %>
+                            <% end %>
+                            <a id="comment-dropdown" class="card-footer-item" onclick="show(<%= post.id %>)"><i class="fas fa-comment"></i>Comment</a>
+                            <a href="#" class="card-footer-item"><i class="fas fa-share"></i>Share</a>
+                        </footer>
+                    </div>
+                    <div class="comment-menu is-hidden" id="comment-menu<%= post.id %>">
+                        <div class="card">
+                            <div class="card-content">
+                                <article class="media">
+                                    <figure class="media-left">
+                                        <p class="image is-48x48">
+                                            <img src="https://bulma.io/images/placeholders/128x128.png">
+                                        </p>
+                                    </figure>
+                                    <div class="media-content mt-1">
+                                        <%= form_with url: comments_path, method: :post do |form| %>
+                                        <div class="field">
+                                            <p class="control">
+                                                <%= form.text_field :comment, placeholder: "Write a comment", class: "input is-rounded" %>
+                                                <%= form.text_field :post_id, value: post.id, class: "is-hidden" %>
+                                                <%= form.text_field :user_id, value: current_user.id, class: "is-hidden" %>
+                                                <%= form.submit class: "is-hidden" %>
+                                            </p>
+                                        </div>
+                                        <% end %>
+                                    </div>
+                                </article>
+                                <% post.comments.each do |comment| %>
+                                <article class="media">
+                                    <figure class="media-left">
+                                        <p class="image is-48x48">
+                                            <img src="https://bulma.io/images/placeholders/128x128.png">
+                                        </p>
+                                    </figure>
+                                    <div class="media-content">
+                                        <div class="content">
+                                            <p>
+                                                <strong><%= comment.user.name %></strong>
+                                                <br>
+                                                <small><%= comment.comment %></small>
+                                                <br>
+                                                <small class="is-size-7"><%= time_ago_in_words(comment.created_at) %> ago</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script>
+    function show(post_id){
+        var comment_menu_element = "comment-menu" + post_id;
+        console.log(comment_menu_element);
+        var commentDropdown = document.getElementById(comment_menu_element);
+        commentDropdown.classList.toggle("is-hidden");
+    }
+</script>
