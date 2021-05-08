@@ -33,7 +33,7 @@
           <div class="navbar-item">
             <div class="buttons">
               <% if user_signed_in? %>
-                <%= current_user.username %>
+                <%= link_to current_user.username, user_path(current_user.id), class: "button is-white" %>
                 <div class="dropdown is-right" style="margin-left:10px; margin-right:10px;">
                   <div class="dropdown-trigger">
                     <button class="button is-white" aria-haspopup="true" aria-control="dropdown-menu1">

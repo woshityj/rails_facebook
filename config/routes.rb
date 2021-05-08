@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   get 'users/index'
 
+  match '/users/:id', to: 'users#show', via: 'get'
+
+  resources :users
+
   devise_for :users, controllers: { sessions: "users/sessions"}
 
   devise_scope :user do
