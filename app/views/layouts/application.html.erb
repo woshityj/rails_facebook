@@ -17,6 +17,7 @@
       </div>
       <div class="navbar-menu">
         <div class="navbar-start">
+          <% if user_signed_in? %>
           <div class="navbar-item">
             <%= form_with url: users_index_path , method: :get do |form| %>
             <p class="control has-icons-left">
@@ -28,13 +29,14 @@
             </p>
             <% end %>
           </div>
+          <% end %>
         </div>
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
               <% if user_signed_in? %>
                 <%= link_to current_user.username, user_path(current_user.id), class: "button is-white" %>
-                <div class="dropdown is-right" style="margin-left:10px; margin-right:10px;">
+                <div class="dropdown is-right" style="margin-right:10px;">
                   <div class="dropdown-trigger">
                     <button class="button is-white" aria-haspopup="true" aria-control="dropdown-menu1">
                       <span class="icon is-large">

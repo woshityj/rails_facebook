@@ -3,7 +3,8 @@ class FriendsController < ApplicationController
   end
 
   def show
-    @friend_requests = Friend.where(:friend_1_id => current_user.id, :status => "requested").all
+    @friend_requests = Friend.where(:friend_2_id => current_user.id, :status => "requested").all
+    @pending_friend_requests = Friend.where(:friend_1_id => current_user.id, :status => "requested").all
     @friends = Friend.where(:friend_1_id => current_user.id, :status => "accepted").all
   end
 

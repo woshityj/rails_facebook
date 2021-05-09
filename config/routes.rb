@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   match '/users/:id', to: 'users#show', via: 'get'
 
-  resources :users
+  resources :users, :only =>[:show]
 
   devise_for :users, controllers: { sessions: "users/sessions"}
 

@@ -13,7 +13,7 @@
                     <div class="media-content">
                         <div class="content">
                             <p>
-                                <strong><%= friend_request.friend_2.name %></strong>
+                                <strong><%= friend_request.friend_1.username %></strong>
                             </p>
                         </div>
                         <nav class="level">
@@ -23,6 +23,34 @@
                                 </div>
                                 <div class="level-item">
                                     <%= link_to "Delete", friend_path(:id => friend_request.id, :friend_2_id => friend_request.friend_2.id), method: :delete, class: "button is-ghost" %>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </article>
+                <% end %>
+            </div>
+        </div>
+        <div class="card mt-5">
+            <div class="card-content">
+                <h3 class="title is-3">Pending Friend Requests</h3>
+                <% @pending_friend_requests.each do |pending_friend_request| %>
+                <article class="media">
+                    <figure class="media-left">
+                        <p class="image is-64x64">
+                            <img src="https://bulma.io/images/placeholders/128x128.png">
+                        </p>
+                    </figure>
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                <strong><%= pending_friend_request.friend_2.username %></strong>
+                            </p>
+                        </div>
+                        <nav class="level">
+                            <div class="level-left">
+                                <div class="level-item">
+                                    <%= link_to "Cancel Friend Request", friend_path(:id => pending_friend_request.id, :friend_2_id => pending_friend_request.friend_2.id), method: :delete, class: "button is-ghost" %>
                                 </div>
                             </div>
                         </nav>

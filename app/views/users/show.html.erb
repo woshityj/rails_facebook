@@ -10,6 +10,10 @@
                     <% end %>
                 </figure>
                 <h3 class="title is-3 mt-1"><%= @user.name %></h3>
+                <div class="buttons is-centered">
+                    <button class="button is-white"><small>Posts <%= current_user.posts.count %></button>
+                    <%= link_to "<small>Friends #{current_user.friends_1.count + current_user.friends_2.count}</small>".html_safe, friend_path, class: "button is-white" %>
+                </div>
                 <div class="card">
                     <header class="card-header">
                         <p class="card-header-title">
