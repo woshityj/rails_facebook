@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
     @current_user_liked_posts = {}
     current_user.likes.each do |liked_post|
       @current_user_liked_posts[liked_post.id] = liked_post.post_id

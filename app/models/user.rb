@@ -27,4 +27,9 @@ class User < ApplicationRecord
       user.avatar.attach(io: file, filename: filename)
     end
   end
+  
+  after_create :send_email
+  def send_email
+    UserMailer.welcome_email(self).deliver
+  end
 end
