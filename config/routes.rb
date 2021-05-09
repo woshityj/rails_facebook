@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :users, :only =>[:show]
 
-  devise_for :users, controllers: { sessions: "users/sessions"}
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   devise_scope :user do
     authenticated :user do
