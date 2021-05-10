@@ -25,9 +25,9 @@ The list below lists the gems used to build this project:
 
 There are many additional features I would like to add on to this uncompleted project which I will come back to in the future. In order to continue with the course, I have cut listed several features I would like to implement in the future.
 
-[ ] Posting pictures as posts
-[ ] Comment on comments
-[ ] Realtime notifications (without refreshing the page)
-[ ] Realtime posts (without refreshing the page)
-[ ] Different type of likes
-[ ] Edit user page
+- [ ] Posting pictures as posts
+- [ ] Comment on comments
+- [ ] Realtime notifications (without refreshing the page)
+- [ ] Realtime posts (without refreshing the page)
+- [ ] Different type of likes
+- [ ] Edit user page
